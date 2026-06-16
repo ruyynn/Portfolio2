@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
-import { Github, ExternalLink, Star, GitFork, Search, X } from 'lucide-react';
+import { Github, Star, GitFork, Search, X } from 'lucide-react';
 import { projects } from '@/utils/constants';
 
 export default function ProjectsPage() {
