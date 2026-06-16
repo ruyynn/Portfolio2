@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { 
-  ArrowLeft, Calendar, Clock, Eye, Tag, 
+  ArrowLeft, Calendar, Clock, Eye, 
   ExternalLink, Share2, Bookmark, Heart 
 } from 'lucide-react';
 import { articles } from '@/utils/constants';
