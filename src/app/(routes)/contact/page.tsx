@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { 
   Send, CheckCircle, Github, Instagram, Mail, 
   Copy, Check, MessageSquare, MapPin, Clock, 
-  Shield, Zap, ArrowRight 
+  Shield, Zap 
 } from 'lucide-react';
 import siteConfig from '@/config/site';
 
