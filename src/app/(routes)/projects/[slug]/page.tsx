@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { 
   ArrowLeft, Github, ExternalLink, Star, GitFork, 
-  Download, Terminal, Shield, Zap, 
+  Download, Terminal, Shield, 
   Copy, Check 
 } from 'lucide-react';
 import { projects } from '@/utils/constants';
