@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { 
   Mail, Award, ExternalLink, CheckCircle, 
-  Clock, Building, Users, BadgeCheck
+  Clock, Building, BadgeCheck
 } from 'lucide-react';
 import { acknowledgements, certificates } from '@/utils/constants';
 import Image from 'next/image';
