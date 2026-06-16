@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { 
-  Calendar, Clock, Eye, Tag, ExternalLink, 
+  Calendar, Clock, Eye, ExternalLink, 
   Search, X, ArrowRight 
 } from 'lucide-react';
 import { articles } from '@/utils/constants';
