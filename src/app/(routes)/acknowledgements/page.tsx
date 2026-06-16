@@ -133,9 +133,9 @@ export default function AcknowledgementsPage() {
                             }`} />
                           ) : (
                             <BadgeCheck className={`w-5 h-5 ${
-                              activeTab === 'acknowledgements' 
-                                ? 'text-primary' 
-                                : 'text-secondary'
+                              activeTab === 'certificates' 
+                                ? 'text-secondary' 
+                                : 'text-primary'
                             }`} />
                           )}
                         </div>
