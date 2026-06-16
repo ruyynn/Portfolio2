@@ -1,4 +1,3 @@
-// Contact page 
 'use client';
 
 import { useState } from 'react';
@@ -8,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { 
   Send, CheckCircle, Github, Instagram, Mail, 
   Copy, Check, MessageSquare, MapPin, Clock, 
-  Shield, Zap 
+  Shield, Zap
 } from 'lucide-react';
 import siteConfig from '@/config/site';
 
@@ -24,7 +23,7 @@ export default function ContactPage() {
   const [copied, setCopied] = useState(false);
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>();
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsSubmitted(true);
     reset();
@@ -42,6 +41,13 @@ export default function ContactPage() {
     { icon: Clock, label: 'Response Time', value: 'Usually within 24h' },
     { icon: Shield, label: 'Availability', value: 'Open for collab' },
     { icon: Zap, label: 'Time Zone', value: 'WIB (UTC+7)' },
+  ];
+
+  const socialLinks = [
+    { name: 'GitHub', url: siteConfig.links.github, icon: Github },
+    { name: 'Instagram', url: siteConfig.links.instagram, icon: Instagram },
+    { name: 'Mastodon', url: siteConfig.links.mastodon, icon: MessageSquare },
+    { name: 'Email', url: `mailto:${siteConfig.links.email}`, icon: Mail },
   ];
 
   return (
@@ -119,27 +125,23 @@ export default function ContactPage() {
                 <div className="glass rounded-2xl p-6 border border-white/5">
                   <h4 className="text-sm font-semibold text-white mb-4">Find me on</h4>
                   <div className="flex flex-wrap gap-3">
-                    {socialLinks.map((link) => {
-                      const Icon = link.icon === 'FaGithub' ? Github :
-                                 link.icon === 'FaInstagram' ? Instagram :
-                                 link.icon === 'FaMastodon' ? MessageSquare :
-                                 Mail;
-                      return (
-                        <motion.a
-                          key={link.name}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -5 }}
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl glass hover:glass-dark transition-all group flex-1"
-                        >
-                          <Icon className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
-                          <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                            {link.username}
-                          </span>
-                        </motion.a>
-                      );
-                    })}
+                    {socialLinks.map((link) => (
+                      <motion.a
+                        key={link.name}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -5 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl glass hover:glass-dark transition-all group flex-1"
+                      >
+                        <link.icon className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                          {link.name === 'Email' ? siteConfig.links.email : 
+                           link.name === 'Mastodon' ? '@Ruyynn' : 
+                           link.name === 'GitHub' ? 'ruyynn' : 'ellreynn'}
+                        </span>
+                      </motion.a>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -169,7 +171,7 @@ export default function ContactPage() {
                       </motion.div>
                       <h4 className="text-2xl font-bold text-white mt-6">Message Sent!</h4>
                       <p className="text-gray-400 text-center mt-2 max-w-sm">
-                        Thanks for reaching out, {siteConfig.author.alias}. I'll get back to you as soon as possible.
+                        Thanks for reaching out! I'll get back to you as soon as possible.
                       </p>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
