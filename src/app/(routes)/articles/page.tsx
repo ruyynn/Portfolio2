@@ -1,9 +1,7 @@
-// Articles list 
 'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { 
