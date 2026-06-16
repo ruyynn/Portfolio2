@@ -1,6 +1,6 @@
 // Constants 
+import siteConfig from '@/config/site';
 import { Project, Acknowledgement, Article, Skill, SocialLink } from '@/types';
-import { siteConfig } from '@/config/site';
 
 export const projects: Project[] = [
   {
@@ -275,7 +275,5 @@ export const stats = [
   { label: 'Certificates', value: siteConfig.stats.certificates, suffix: '' },
   { label: 'Experience', value: siteConfig.stats.experienceYears, suffix: '+ Years' },
 ];
-
-import siteConfig from '@/config/site';
 
 export { siteConfig };
