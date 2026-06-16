@@ -6,7 +6,7 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { 
   Calendar, Clock, Eye, ExternalLink, 
-  Search, X, ArrowRight 
+  Search, X 
 } from 'lucide-react';
 import { articles } from '@/utils/constants';
 
