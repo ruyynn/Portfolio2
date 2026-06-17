@@ -1,4 +1,3 @@
-// Particle background 
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -17,16 +16,19 @@ export const ParticleBackground = () => {
     let particles: Particle[] = [];
     const mouse = { x: 0, y: 0 };
 
+    // Simpan canvas dan ctx untuk digunakan di class
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
     class Particle {
-     x!: number;
-     y!: number;
-    size!: number;
-    speedX!: number;
-    speedY!: number;
-    opacity!: number;
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
 
       constructor() {
-        if (!canvas) return;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 0.5;
@@ -49,6 +51,7 @@ export const ParticleBackground = () => {
           this.y -= dy * force * 0.01;
         }
 
+        // Boundary check - menggunakan canvas dari closure
         if (this.x > canvas.width) this.x = 0;
         if (this.x < 0) this.x = canvas.width;
         if (this.y > canvas.height) this.y = 0;
