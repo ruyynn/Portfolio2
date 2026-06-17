@@ -26,6 +26,7 @@ export const ParticleBackground = () => {
       opacity: number;
 
       constructor() {
+        if (!canvas) return;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 0.5;
