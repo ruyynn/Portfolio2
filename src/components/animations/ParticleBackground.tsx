@@ -18,12 +18,12 @@ export const ParticleBackground = () => {
     const mouse = { x: 0, y: 0 };
 
     class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      opacity: number;
+     x!: number;
+     y!: number;
+    size!: number;
+    speedX!: number;
+    speedY!: number;
+    opacity!: number;
 
       constructor() {
         if (!canvas) return;
