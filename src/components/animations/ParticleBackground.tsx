@@ -14,64 +14,58 @@ export const ParticleBackground = () => {
 
     let animationFrameId: number;
     const mouse = { x: 0, y: 0 };
+    let particles: any[] = [];
 
-    // Definisi class Particle di DALAM useEffect
-    class Particle {
-      x: number = 0;
-      y: number = 0;
-      size: number = 0;
-      speedX: number = 0;
-      speedY: number = 0;
-      opacity: number = 0;
+    // Inisialisasi canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-      }
+    // Buat particle dengan fungsi biasa, bukan class
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.2,
+        update: function() {
+          this.x += this.speedX;
+          this.y += this.speedY;
 
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            const force = (150 - distance) / 150;
+            this.x -= dx * force * 0.01;
+            this.y -= dy * force * 0.01;
+          }
 
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 150) {
-          const force = (150 - distance) / 150;
-          this.x -= dx * force * 0.01;
-          this.y -= dy * force * 0.01;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+        },
+        draw: function() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+          ctx.fill();
         }
-
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
-        ctx.fill();
-      }
+      };
     }
 
-    let particles: Particle[] = [];
-
-    const init = () => {
+    function init() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
       for (let i = 0; i < 80; i++) {
-        particles.push(new Particle());
+        particles.push(createParticle());
       }
-    };
+    }
 
-    const connectParticles = () => {
+    function connectParticles() {
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -87,9 +81,9 @@ export const ParticleBackground = () => {
           }
         }
       }
-    };
+    }
 
-    const animate = () => {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((particle) => {
         particle.update();
@@ -97,17 +91,17 @@ export const ParticleBackground = () => {
       });
       connectParticles();
       animationFrameId = requestAnimationFrame(animate);
-    };
+    }
 
-    const handleResize = () => {
+    function handleResize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    };
+    }
 
-    const handleMouseMove = (e: MouseEvent) => {
+    function handleMouseMove(e: MouseEvent) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    };
+    }
 
     init();
     animate();
