@@ -16,10 +16,6 @@ export const ParticleBackground = () => {
     let particles: Particle[] = [];
     const mouse = { x: 0, y: 0 };
 
-    // Simpan canvas dan ctx untuk digunakan di class
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
     class Particle {
       x: number;
       y: number;
@@ -51,7 +47,7 @@ export const ParticleBackground = () => {
           this.y -= dy * force * 0.01;
         }
 
-        // Boundary check - menggunakan canvas dari closure
+        // Boundary check
         if (this.x > canvas.width) this.x = 0;
         if (this.x < 0) this.x = canvas.width;
         if (this.y > canvas.height) this.y = 0;
