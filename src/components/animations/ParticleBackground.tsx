@@ -13,16 +13,16 @@ export const ParticleBackground = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Particle[] = [];
     const mouse = { x: 0, y: 0 };
 
+    // Definisi class Particle di DALAM useEffect
     class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      opacity: number;
+      x: number = 0;
+      y: number = 0;
+      size: number = 0;
+      speedX: number = 0;
+      speedY: number = 0;
+      opacity: number = 0;
 
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -37,7 +37,6 @@ export const ParticleBackground = () => {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        // Mouse interaction
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -47,7 +46,6 @@ export const ParticleBackground = () => {
           this.y -= dy * force * 0.01;
         }
 
-        // Boundary check
         if (this.x > canvas.width) this.x = 0;
         if (this.x < 0) this.x = canvas.width;
         if (this.y > canvas.height) this.y = 0;
@@ -61,6 +59,8 @@ export const ParticleBackground = () => {
         ctx.fill();
       }
     }
+
+    let particles: Particle[] = [];
 
     const init = () => {
       canvas.width = window.innerWidth;
